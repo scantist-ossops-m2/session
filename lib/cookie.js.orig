@@ -12,10 +12,6 @@ module.exports = class Cookie {
     this.httpOnly = cookie.httpOnly !== undefined ? cookie.httpOnly : true
     this._expires = null
 
-    if(cookie.expires) {
-      this.originalExpires = new Date(cookie.expires)
-    }
-        
     if (originalMaxAge) {
       this.maxAge = originalMaxAge
     } else if (cookie.expires) {
@@ -61,7 +57,6 @@ module.exports = class Cookie {
     return {
       expires: this._expires,
       originalMaxAge: this.originalMaxAge,
-      originalExpires: this.originalExpires,
       sameSite: this.sameSite,
       secure: this.secure,
       path: this.path,
