@@ -93,9 +93,7 @@ function fastifySession (fastify, options, next) {
         decryptedSessionId
       )
 
-      const expiration = restoredSession.cookie.originalExpires || restoredSession.cookie.expires
-
-      if (expiration && expiration.getTime() <= Date.now()) {
+      if (restoredSession.cookie.expires && restoredSession.cookie.expires.getTime() <= Date.now()) {
         restoredSession.destroy(err => {
           if (err) {
             done(err)
